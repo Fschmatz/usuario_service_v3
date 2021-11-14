@@ -7,8 +7,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -23,6 +26,11 @@ public class UsuarioController {
 
     UsuarioRepository repository;
 
+    @GetMapping("/criarConta")
+    public String homePage() {
+        return "criarConta";
+    }
+
     @RequestMapping("/listarUsuarios")
     public ModelAndView listarUsuarios(){
         ModelAndView mv = new ModelAndView("listarUsuarios");
@@ -31,6 +39,19 @@ public class UsuarioController {
         return mv;
     }
 
+
+    @PostMapping("/add")
+    public String form(@Validated Usuario usuario, BindingResult result, RedirectAttributes attributes){
+
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+            return "redirect:http://localhost:9090/";
+        }
+
+        repository.save(usuario);
+        attributes.addFlashAttribute("mensagem", "Sucesso!");
+        return "redirect:http://localhost:9090/";
+    }
 
     @GetMapping
     public ResponseEntity<List<Usuario>> getAll() {
