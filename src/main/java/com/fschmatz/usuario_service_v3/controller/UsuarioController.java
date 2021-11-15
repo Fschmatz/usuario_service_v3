@@ -46,12 +46,26 @@ public class UsuarioController {
    public String form(@Validated Usuario usuario, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
             attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-            return "/error";
+            return "redirect:/error";
         }
 
         repository.save(usuario);
         attributes.addFlashAttribute("mensagem", "Sucesso!");
-        return "/listarUsuarios";
+        return "redirect:/listarUsuarios";
+    }
+
+    //EDITAR CONTA
+    @RequestMapping("/edit/{id}")
+    public String editarUsuario(@PathVariable("id") Integer id, @Validated Usuario usuario, BindingResult result, Model model){
+
+        Optional<Usuario> existingUsuarioOptional = repository.findById(id);
+        if (existingUsuarioOptional.isPresent()) {
+            Usuario usuarioSalvo = existingUsuarioOptional.get();
+            BeanUtils.copyProperties(usuario, usuarioSalvo, "id_usuario");
+            repository.save(usuarioSalvo);
+        }
+
+        return "redirect:https://g1.globo.com/";
     }
 
     @GetMapping
