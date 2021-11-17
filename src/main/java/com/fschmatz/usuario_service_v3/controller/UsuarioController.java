@@ -48,12 +48,12 @@ public class UsuarioController {
             attributes.addFlashAttribute("mensagem", "Verifique os campos!");
             return "redirect:/error";
         }
-
         repository.save(usuario);
         attributes.addFlashAttribute("mensagem", "Sucesso!");
-        return "redirect:/listarUsuarios";
+        return "redirect:http://localhost:9090/usuario/listarUsuarios";
     }
 
+    ///////////////////
     //EDITAR CONTA
     @RequestMapping("/edit/{id}")
     public String editarUsuario(@PathVariable("id") Integer id, @Validated Usuario usuario, BindingResult result, Model model){
@@ -66,6 +66,31 @@ public class UsuarioController {
         }
 
         return "redirect:https://g1.globo.com/";
+    }
+
+
+    //http://localhost:9091/usuario/login/1/2             !!! tem 2 "eu" não usar
+    //checar usuario e retornar true or false
+    @RequestMapping ("/login/{login}/{senha}")
+    public Boolean login(@PathVariable("login") String login, @PathVariable("senha") String senha, Model model){
+
+        Optional<Usuario> existingUsuarioLogin = repository.findByLogin(login);
+        if(existingUsuarioLogin.get().getSenha().equals(senha)){
+            System.out.println("ok");
+            return true;
+        }
+        System.out.println("nope");
+        return false;
+
+        /* if (existingUsuarioLogin.get().getSenha().isEmpty()) {
+            return "OK achou";
+        }
+
+        return "redirect:https://g1.globo.com/";*/
+
+        /*System.out.println("NOME --> "+existingUsuarioLogin.get().getNome());
+        System.out.println("LOGIN --> "+existingUsuarioLogin.get().getLogin());
+        System.out.println("SENHA --> "+existingUsuarioLogin.get().getSenha());*/
     }
 
     @GetMapping
