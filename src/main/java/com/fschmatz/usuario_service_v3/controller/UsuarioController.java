@@ -28,7 +28,7 @@ public class UsuarioController {
     UsuarioRepository repository;
 
     @GetMapping("/criarConta")
-    public String homePage() {
+    public String criarConta() {
         return "criarConta";
     }
 
@@ -40,6 +40,13 @@ public class UsuarioController {
         return mv;
     }
 
+    @RequestMapping("/homeUsuario/{id}")
+    public ModelAndView homeUsuario(@PathVariable("id") Integer id){
+        ModelAndView mv = new ModelAndView("homeUsuario");
+        Usuario usuario =  repository.getById(id);
+        mv.addObject("usuario", usuario);
+        return mv;
+    }
 
     //NOVA CONTA
     @PostMapping("/add")
