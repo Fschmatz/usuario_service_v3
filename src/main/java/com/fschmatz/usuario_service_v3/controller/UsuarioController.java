@@ -32,7 +32,7 @@ public class UsuarioController {
         return "criarConta";
     }
 
-    @RequestMapping("/listarUsuarios")
+    @GetMapping("/listarUsuarios")
     public ModelAndView listarUsuarios(){
         ModelAndView mv = new ModelAndView("listarUsuarios");
         Iterable<Usuario> usuarios = repository.findAll();
@@ -40,7 +40,7 @@ public class UsuarioController {
         return mv;
     }
 
-    @RequestMapping("/homeUsuario/{id}")
+    @GetMapping("/homeUsuario/{id}")
     public ModelAndView homeUsuario(@PathVariable("id") Integer id){
         ModelAndView mv = new ModelAndView("homeUsuario");
         Usuario usuario =  repository.getById(id);
