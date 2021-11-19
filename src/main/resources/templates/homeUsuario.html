@@ -41,7 +41,7 @@
     <br>
 
     <p>
-        <a href="/signup" th:href="@{http://localhost:9090/}" class="btn btn-large btn-success">Voltar</a>
+        <a th:href="@{http://localhost:9090/}" class="btn btn-large btn-success">Voltar</a>
     </p>
 </div>
 <br>
@@ -64,11 +64,34 @@
         <td data-th-text="${u.email}"></td>
         <td data-th-text="${u.login}"></td>
         <td>
-            <a th:href="@{http://localhost:9090/usuario/edit/{id}(id=${usuario.id_usuario})}" id="btEditar" class="btn btn-success"
+            <a th:href="@{http://localhost:9090/usuario/edit/{id}(id=${usuario.id_usuario})}" id="btEditar"
+               class="btn btn-success"
                title="Editar">
                 <i class="fas fa-edit"></i>
                 Editar</a>
         </td>
+        <div class="container-fluid">
+            <div class="btn-group button">
+
+                <p>
+                    <a th:href="@{http://localhost:9092/evento/eventosUsuario/{id}(id=${usuario.id_usuario})}"
+                       class="btn btn-large btn-success">MEUS EVENTOS
+                    </a>
+                </p>
+
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="btn-group button">
+
+                <p>
+                    <a th:href="@{http://localhost:9092/evento/listarEventos}"
+                       class="btn btn-large btn-success">BUSCAR EVENTOs
+                    </a>
+                </p>
+
+            </div>
+        </div>
     </tr>
     </tbody>
 </table>
