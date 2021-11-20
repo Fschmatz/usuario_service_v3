@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!--  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}"-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Conta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <style>
+        .wrapper {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #37843a;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+        }
+
+        .btn#btEditar {
+            background-color: #407fab;
+            padding: 8px 25px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <h1>
+        Minha Conta
+    </h1>
+    <br>
+
+    <p>
+        <a th:href="@{http://localhost:9090/}" class="btn btn-large btn-success">Voltar</a>
+    </p>
+</div>
+<br>
+
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NOME</th>
+        <th scope="col">CPF</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">LOGIN !?</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="u : ${usuario}">
+        <td data-th-text="${u.id_usuario}"></td>
+        <td data-th-text="${u.nome}"></td>
+        <td data-th-text="${u.cpf}"></td>
+        <td data-th-text="${u.email}"></td>
+        <td data-th-text="${u.login}"></td>
+        <td>
+            <a th:href="@{http://localhost:9090/usuario/edit/{id}(id=${usuario.id_usuario})}" id="btEditar"
+               class="btn btn-success"
+               title="Editar">
+                <i class="fas fa-edit"></i>
+                Editar</a>
+        </td>
+        <div class="container-fluid">
+            <div class="btn-group button">
+
+                <p>
+                    <a th:href="@{http://localhost:9092/evento/eventosUsuario/{id}(id=${usuario.id_usuario})}"
+                       class="btn btn-large btn-success">MEUS EVENTOS
+                    </a>
+                </p>
+
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="btn-group button">
+
+                <p>
+                    <a th:href="@{http://localhost:9092/evento/listarEventos}"
+                       class="btn btn-large btn-success">BUSCAR EVENTOs
+                    </a>
+                </p>
+
+            </div>
+        </div>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
