@@ -22,6 +22,7 @@ public class Usuario {
     private String nome;
     private String cpf;
     private String email;
+    @JsonIgnore
     private String login;
 
     @JsonIgnore

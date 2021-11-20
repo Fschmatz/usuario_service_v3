@@ -62,12 +62,24 @@ public class UsuarioController {
 
     ///////////////////
     //EDITAR CONTA
-    @RequestMapping("/edit/{id}")
-    public String editarUsuario(@PathVariable("id") Integer id, @Validated Usuario usuario, BindingResult result, Model model){
 
-        Optional<Usuario> existingUsuarioOptional = repository.findById(id);
-        if (existingUsuarioOptional.isPresent()) {
-            Usuario usuarioSalvo = existingUsuarioOptional.get();
+    @RequestMapping(value="/edit/{id}",method = RequestMethod.GET)
+    public ModelAndView editUsuario(@PathVariable("id") Integer id){
+        ModelAndView mv = null;
+        Optional<Usuario> usuario = repository.findById(id);
+        if(usuario.isPresent()){
+            mv = new ModelAndView("editarConta");
+            mv.addObject("usuario", usuario.get());
+        }
+        return mv;
+    }
+
+    @RequestMapping("/edit/{id}")
+    public String editUsuario(@PathVariable("id") Integer id, @Validated Usuario usuario, BindingResult result, Model model){
+
+        Optional<Usuario> usuarioOptional = repository.findById(id);
+        if (usuarioOptional.isPresent()) {
+            Usuario usuarioSalvo = usuarioOptional.get();
             BeanUtils.copyProperties(usuario, usuarioSalvo, "id_usuario");
             repository.save(usuarioSalvo);
         }
@@ -76,29 +88,15 @@ public class UsuarioController {
     }
 
 
-    //http://localhost:9091/usuario/login/1/2             !!! tem 2 "eu" não usar
-    //checar usuario e retornar true or false
-    @RequestMapping ("/login/{login}/{senha}")
-    public Boolean login(@PathVariable("login") String login, @PathVariable("senha") String senha, Model model){
 
-        Optional<Usuario> existingUsuarioLogin = repository.findByLogin(login);
-        if(existingUsuarioLogin.get().getSenha().equals(senha)){
-            System.out.println("ok");
-            return true;
-        }
-        System.out.println("nope");
-        return false;
 
-        /* if (existingUsuarioLogin.get().getSenha().isEmpty()) {
-            return "OK achou";
-        }
 
-        return "redirect:https://g1.globo.com/";*/
 
-        /*System.out.println("NOME --> "+existingUsuarioLogin.get().getNome());
-        System.out.println("LOGIN --> "+existingUsuarioLogin.get().getLogin());
-        System.out.println("SENHA --> "+existingUsuarioLogin.get().getSenha());*/
-    }
+
+
+
+
+
 
     @GetMapping
     public ResponseEntity<List<Usuario>> getAll() {
