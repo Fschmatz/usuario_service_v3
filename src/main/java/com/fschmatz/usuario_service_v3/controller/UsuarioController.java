@@ -84,7 +84,7 @@ public class UsuarioController {
             repository.save(usuarioSalvo);
         }
 
-        return "redirect:https://g1.globo.com/";
+        return "teste";
     }
 
 

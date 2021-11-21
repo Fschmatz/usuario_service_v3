@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Result</title>
+    <title>Editar Conta</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css"
@@ -18,7 +18,7 @@
 
                 <section layout:fragment="content">
                     <div class="container my-5">
-                        <h3>Editar Categoria<br><br></h3>
+                        <h3>Editar Minha Conta<br><br></h3>
                         <div th:each="u : ${usuario}" class="container detalhesUsuario">
                             <div class="card">
                                 <div class="card-body">
@@ -47,7 +47,7 @@
                                                            id="login"> <span class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group col-md-8">
-                                                    <label for="email" class="col-form-label">Email</label>
+                                                    <label for="email" class="col-form-label">Senha</label>
                                                     <input type="text" class="form-control" name="senha" th:value="${u.senha}"
                                                            id="senha"> <span class="text-danger"></span>
                                                 </div>
