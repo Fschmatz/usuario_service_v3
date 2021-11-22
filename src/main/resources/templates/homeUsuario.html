@@ -29,9 +29,9 @@
         Minha Conta
     </h1>
     <br>
-    <p>
+   <!-- <p>
         <a th:href="@{http://localhost:9090/}" class="btn btn-large btn-success">LOGOUT</a>
-    </p>
+    </p>-->
 </div>
 <div class="container my-2">
     <div class="card">
@@ -42,12 +42,12 @@
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <butt>
                             <a th:href="@{http://localhost:9092/inscricao/listarInscricoesUsuario/{id}(id=${usuario.id_usuario})}"
-                               class="btn btn-large btn-success">MEUS EVENTOS
+                               class="btn btn-large btn-success">MINHAS INSCRIÇÕES
                             </a>
                         </butt>
                     </div>
                     <div class="btn-group mr-2" role="group" aria-label="Second group">
-                        <a th:href="@{http://localhost:9092/evento/listarEventos}"
+                        <a th:href="@{http://localhost:9092/evento/listarEventos/{id}(id=${usuario.id_usuario})}"
                            class="btn btn-large btn-success">BUSCAR EVENTOS
                         </a>
                     </div>
