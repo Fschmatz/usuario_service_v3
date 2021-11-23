@@ -41,13 +41,13 @@
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <butt>
-                            <a th:href="@{http://localhost:9092/inscricao/listarInscricoesUsuario/{id}(id=${usuario.id_usuario})}"
+                            <a th:href="@{http://localhost:9090/inscricao/listarInscricoesUsuario/{id}(id=${usuario.id_usuario})}"
                                class="btn btn-large btn-success">MINHAS INSCRIÇÕES
                             </a>
                         </butt>
                     </div>
                     <div class="btn-group mr-2" role="group" aria-label="Second group">
-                        <a th:href="@{http://localhost:9092/evento/listarEventos/{id}(id=${usuario.id_usuario})}"
+                        <a th:href="@{http://localhost:9090/evento/listarEventos/{id}(id=${usuario.id_usuario})}"
                            class="btn btn-large btn-success">BUSCAR EVENTOS
                         </a>
                     </div>
@@ -78,7 +78,7 @@
                                 <td th:text="${u.email}"></td>
                                 <td th:text="${u.login}"></td>
                                 <td>
-                                    <a th:href="@{http://localhost:9091/usuario/edit/{id}(id=${usuario.id_usuario})}" id="btEditar"
+                                    <a th:href="@{http://localhost:9090/usuario/edit/{id}(id=${usuario.id_usuario})}" id="btEditar"
                                        class="btn btn-success"
                                        title="Editar">
                                         <i class="fas fa-edit"></i>
