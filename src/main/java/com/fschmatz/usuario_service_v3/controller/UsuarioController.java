@@ -57,7 +57,7 @@ public class UsuarioController {
         }
         repository.save(usuario);
         attributes.addFlashAttribute("mensagem", "Sucesso!");
-        return "redirect:http://localhost:9090/usuario/listarUsuarios";
+        return "redirect:http://localhost:9093/login/";
     }
 
     ///////////////////
@@ -83,20 +83,8 @@ public class UsuarioController {
             BeanUtils.copyProperties(usuario, usuarioSalvo, "id_usuario");
             repository.save(usuarioSalvo);
         }
-
-        return "teste";
+        return "redirect:http://localhost:9091/usuario/homeUsuario/"+id;
     }
-
-
-
-
-
-
-
-
-
-
-
 
     @GetMapping
     public ResponseEntity<List<Usuario>> getAll() {
