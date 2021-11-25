@@ -39,6 +39,11 @@
             <div th:switch="${usuario}" class="container my-5">
 
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="Second group">
+                        <a th:href="@{http://localhost:9090/evento/listarEventos/{id}(id=${usuario.id_usuario})}"
+                           class="btn btn-large btn-success">BUSCAR EVENTOS
+                        </a>
+                    </div>
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <butt>
                             <a th:href="@{http://localhost:9090/evento/inscricao/listarInscricoesUsuario/{id}(id=${usuario.id_usuario})}"
@@ -46,9 +51,10 @@
                             </a>
                         </butt>
                     </div>
+
                     <div class="btn-group mr-2" role="group" aria-label="Second group">
-                        <a th:href="@{http://localhost:9090/evento/listarEventos/{id}(id=${usuario.id_usuario})}"
-                           class="btn btn-large btn-success">BUSCAR EVENTOS
+                        <a th:href="@{http://localhost:9090/evento/inscricao/listarInscricoesUsuarioComCheckin/{id}(id=${usuario.id_usuario})}"
+                           class="btn btn-large btn-success">EVENTOS COM CHECK-IN
                         </a>
                     </div>
                 </div>
