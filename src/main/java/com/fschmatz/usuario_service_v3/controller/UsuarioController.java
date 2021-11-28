@@ -146,4 +146,34 @@ public class UsuarioController {
         }
     }
 
+    //APP SYNC
+    //http://localhost:9091/usuario/listarUsuarios
+    @RequestMapping(value = "/syncUser", method = RequestMethod.POST)
+    public Usuario saveSyncUser(Usuario usuario){
+
+        System.out.println("Alguem chegou aqui");
+        System.out.println(usuario.toString());
+        repository.save(usuario);
+
+
+        Optional<Usuario> usuarioDB = repository.findByCpf(usuario.getCpf());
+
+        if (usuarioDB.isPresent()) {
+            Usuario usuarioSalvo = usuarioDB.get();
+            BeanUtils.copyProperties(usuario, usuarioSalvo);
+            repository.save(usuarioSalvo);
+        }
+
+      //  return "oi";
+       /* if(result.hasErrors()){
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+            return "redirect:/error";
+        }
+        repository.save(usuario);
+        attributes.addFlashAttribute("mensagem", "Sucesso!");
+        return "redirect:http://localhost:9090/login/";*/
+
+        return null;
+    }
+
 }
