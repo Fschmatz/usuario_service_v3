@@ -156,13 +156,13 @@ public class UsuarioController {
         repository.save(usuario);
 
 
-        Optional<Usuario> usuarioDB = repository.findByCpf(usuario.getCpf());
+       /* Optional<Usuario> usuarioDB = repository.findByCpf(usuario.getCpf());
 
         if (usuarioDB.isPresent()) {
             Usuario usuarioSalvo = usuarioDB.get();
             BeanUtils.copyProperties(usuario, usuarioSalvo);
             repository.save(usuarioSalvo);
-        }
+        }*/
 
       //  return "oi";
        /* if(result.hasErrors()){
