@@ -2,6 +2,7 @@ package com.fschmatz.usuario_service_v3.controller;
 
 import com.fschmatz.usuario_service_v3.entity.Usuario;
 import com.fschmatz.usuario_service_v3.repository.UsuarioRepository;
+import com.fschmatz.usuario_service_v3.util.Encrypt;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -145,6 +146,38 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
     }
+
+    //CERTIFICADO
+    //http://localhost:9091/usuario/homeUsuario/21
+    @RequestMapping(value="/validarCertificado/{id}")
+    public ModelAndView validarCertificado(@PathVariable("id") Integer idUsuario){
+        ModelAndView mv = null;
+        Optional<Usuario> usuario = repository.findById(idUsuario);
+        if(usuario.isPresent()){
+            mv = new ModelAndView("validarCertificado");
+            mv.addObject("usuario", usuario.get());
+        }
+        return mv;
+    }
+
+    @PostMapping("/imprimirValidadeCertificado")//{codigo}
+    public ModelAndView printCertificado(@ModelAttribute("codigo") String codigo){
+
+        String imprimir = Encrypt.decrypt(codigo);
+        boolean testar = Encrypt.encrypt(imprimir).equals(codigo);
+
+        if(testar){
+            ModelAndView mv = new ModelAndView("exibirCertificado");
+            mv.addObject("imprimir", imprimir);
+            return mv;
+        }else{
+            ModelAndView mv = new ModelAndView("error");
+            return mv;
+        }
+
+    }
+
+
 
     //APP SYNC
     //http://localhost:9091/usuario/listarUsuarios
