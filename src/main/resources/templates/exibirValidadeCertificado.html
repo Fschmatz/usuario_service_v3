@@ -11,18 +11,12 @@
 <body>
 
 <h3>Certificado Válido<br><br></h3>
-<div th:each="i : ${imprimir}" class="container detalhesUsuario">
+<div th:each="i : ${imprimir}" >
     <div>
-        <div>
-            <div class="col-md-10">
-                <div class="row">
 
-                    <td data-th-text="${i}"></td>
+        <h3><td data-th-text="${i}"></td></h3>
 
 
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

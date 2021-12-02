@@ -2,28 +2,50 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Conta</title>
+    <title>Validar Certificado</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css"
-         />
+    />
+    <style>
+        .wrapper {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #37843a;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
 
-<div>
-    <h3>Validar Certificado<br><br></h3>
-    <div th:each="u : ${usuario}" class="container detalhesUsuario">
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div>
+                <h3>Validar Certificado<br><br></h3>
+                <div th:each="u : ${usuario}">
 
-        <form th:action="@{/usuario/imprimirValidadeCertificado/}" th:object="${codigo}" method="post">
-            <div class="form-group col-md-8">
-                <input class="col-form-label" type="codigo" id="codigo" name="codigo" />
+                    <form th:action="@{/usuario/imprimirValidadeCertificado/}" th:object="${codigo}" method="post">
+                        <div class="form-group col-md-8">
+                            <input class="col-form-label" type="codigo" id="codigo" name="codigo"/>
+                        </div>
+                        <div class="btn-group mr-2">
+                            <button class="btn btn-large btn-success" type="submit">VALIDAR</button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
-            <div class="btn-group mr-2">
-                <button class="btn btn-large btn-success" type="submit">VALIDAR</button>
-            </div>
-        </form>
-
-
+        </div>
     </div>
 </div>
 </div>

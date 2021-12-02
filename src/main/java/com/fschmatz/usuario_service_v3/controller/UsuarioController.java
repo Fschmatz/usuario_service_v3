@@ -166,15 +166,19 @@ public class UsuarioController {
         String imprimir = Encrypt.descriptografar(codigo);
         boolean testar = Encrypt.encriptar(imprimir).equals(codigo);
 
-        if(testar){
-            ModelAndView mv = new ModelAndView("exibirValidadeCertificado");
-            mv.addObject("imprimir", imprimir);
-            return mv;
+        if(!codigo.isEmpty()){
+            if(testar){
+                ModelAndView mv = new ModelAndView("exibirValidadeCertificado");
+                mv.addObject("imprimir", imprimir);
+                return mv;
+            }else{
+                ModelAndView mv = new ModelAndView("certificadoInvalido");
+                return mv;
+            }
         }else{
             ModelAndView mv = new ModelAndView("certificadoInvalido");
             return mv;
         }
-
     }
 
 
