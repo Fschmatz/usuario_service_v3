@@ -154,7 +154,7 @@ public class UsuarioController {
         ModelAndView mv = null;
         Optional<Usuario> usuario = repository.findById(idUsuario);
         if(usuario.isPresent()){
-            mv = new ModelAndView("validarCertificado");
+            mv = new ModelAndView("pgValidarCertificado");
             mv.addObject("usuario", usuario.get());
         }
         return mv;
