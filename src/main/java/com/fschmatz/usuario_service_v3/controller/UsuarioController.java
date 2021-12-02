@@ -160,18 +160,18 @@ public class UsuarioController {
         return mv;
     }
 
-    @PostMapping("/imprimirValidadeCertificado")//{codigo}
+    @PostMapping("/imprimirValidadeCertificado")
     public ModelAndView printCertificado(@ModelAttribute("codigo") String codigo){
 
-        String imprimir = Encrypt.decrypt(codigo);
-        boolean testar = Encrypt.encrypt(imprimir).equals(codigo);
+        String imprimir = Encrypt.descriptografar(codigo);
+        boolean testar = Encrypt.encriptar(imprimir).equals(codigo);
 
         if(testar){
-            ModelAndView mv = new ModelAndView("exibirCertificado");
+            ModelAndView mv = new ModelAndView("exibirValidadeCertificado");
             mv.addObject("imprimir", imprimir);
             return mv;
         }else{
-            ModelAndView mv = new ModelAndView("error");
+            ModelAndView mv = new ModelAndView("certificadoInvalido");
             return mv;
         }
 

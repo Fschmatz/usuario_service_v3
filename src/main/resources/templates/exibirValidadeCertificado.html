@@ -2,43 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Conta</title>
+    <title>Certificado</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css"
-         />
+    />
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="row">
+<h3>Certificado Válido<br><br></h3>
+<div th:each="i : ${imprimir}" class="container detalhesUsuario">
+    <div>
+        <div>
+            <div class="col-md-10">
+                <div class="row">
 
-        <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-            <div>
-
-                <section layout:fragment="content">
-                    <div class="container my-5">
-                        <h3>Certificado Válido<br><br></h3>
-                        <div th:each="i : ${imprimir}" class="container detalhesUsuario">
-                            <div>
-                                <div>
-                                    <div class="col-md-10">
-                                        <div class="row">
-
-                                            <td data-th-text="${i}"></td>
+                    <td data-th-text="${i}"></td>
 
 
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
             </div>
-            </section>
+        </div>
     </div>
-    </main>
+</div>
+
+</main>
 </div>
 </div>
 
